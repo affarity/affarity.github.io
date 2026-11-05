@@ -1,0 +1,14 @@
+<!DOCTYPE html><html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Affarity · collegamento TikTok</title>
+<style>body{margin:0;font-family:system-ui,sans-serif;background:#fff7ec;color:#1d1d1d}main{max-width:640px;margin:0 auto;padding:40px 22px}
+textarea{width:100%;height:110px;font-size:14px;border-radius:10px;border:1px solid #e0c7a6;padding:10px}
+button{background:#f28c1b;border:0;border-radius:10px;padding:12px 18px;font-weight:700;font-size:16px;margin-top:10px;cursor:pointer}</style></head>
+<body><main><h1>Collegamento TikTok</h1><div id="out">Nessun codice ricevuto.</div></main>
+<script>
+const p=new URLSearchParams(location.search), code=p.get('code'), err=p.get('error');
+const o=document.getElementById('out');
+if(code){o.innerHTML='<p>Autorizzazione ricevuta. Copia il messaggio qui sotto e incollalo <b>subito</b> nella chat privata con il bot Affarity (il codice scade in pochi minuti):</p><textarea id="t" readonly></textarea><br><button id="b">Copia</button>';
+ const t=document.getElementById('t'); t.value='/tiktok '+code;
+ document.getElementById('b').onclick=()=>{t.select();navigator.clipboard&&navigator.clipboard.writeText(t.value);document.getElementById('b').textContent='Copiato ✔';};}
+else if(err){o.textContent='TikTok ha risposto con un errore: '+err+' '+(p.get('error_description')||'');}
+</script></body></html>
