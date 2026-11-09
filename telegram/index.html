@@ -18,26 +18,29 @@ h1{font-size:1.7rem;margin:.2rem 0 .4rem}.tag{color:#e8730c;font-weight:800;lett
 <div class="box" id="app"><b>Sei dentro TikTok o Instagram?</b><br>
 Se il pulsante non apre Telegram, tocca <b>⋯</b> in alto a destra e scegli <b>Apri nel browser</b>, poi tocca di nuovo il pulsante.<br>
 Oppure copia il link, apri Telegram e cerca <b>@affarity</b>.</div>
-<p class="piccolo">Canale: t.me/affarity · @affarity</p><!-- v2 -->
+<p class="piccolo">Canale: t.me/affarity · @affarity</p><!-- v3 -->
 </main>
 <script>
 (function(){
+  var T = "https://t.me/affarity";
   var ua = navigator.userAgent || "";
-  var inApp = /musical_ly|Bytedance|TikTok|Instagram|FBAN|FBAV|BytedanceWebview/i.test(ua);
-  var android = /Android/i.test(ua);
+  var inApp = /musical_ly|Bytedance|TikTok|Instagram|FBAN|FBAV|FB_IAB|BytedanceWebview/i.test(ua);
+  var android = /Android/i.test(ua), ios = /iPhone|iPad|iPod/i.test(ua);
   var apri = document.getElementById("apri");
-  if (inApp) {
-    document.getElementById("app").style.display = "block";
-    // dentro le app: apre direttamente l'app Telegram (su Android con ritorno al web se non c'e')
-    apri.href = android
-      ? "intent://resolve?domain=affarity#Intent;scheme=tg;package=org.telegram.messenger;S.browser_fallback_url=https%3A%2F%2Ft.me%2Faffarity;end"
-      : "tg://resolve?domain=affarity";
-  }
+  var dest = T;
+  if (inApp && android) dest = "intent://resolve?domain=affarity#Intent;scheme=tg;package=org.telegram.messenger;S.browser_fallback_url=" + encodeURIComponent(T) + ";end";
+  else if (inApp && ios) dest = "x-safari-https://t.me/affarity";   // esce da TikTok/Instagram e apre Safari -> Telegram
+  apri.href = dest;
+  if (inApp) document.getElementById("app").style.display = "block";
+  // apertura immediata, senza toccare niente; i pulsanti restano come riserva
+  try { window.location.replace(dest); } catch (e) {}
+  if (inApp && ios) setTimeout(function(){ try { window.location.href = "tg://resolve?domain=affarity"; } catch (e) {} }, 1200);
   document.getElementById("copia").onclick = function(){
-    var t = "https://t.me/affarity", b = this;
+    var b = this;
     function ok(){ b.textContent = "✅ Link copiato: apri Telegram e incollalo"; }
-    if (navigator.clipboard) { navigator.clipboard.writeText(t).then(ok, function(){ prompt("Copia il link:", t); }); }
-    else { prompt("Copia il link:", t); }
+    function vecchio(){ var i=document.createElement("textarea"); i.value=T; document.body.appendChild(i); i.select();
+      try { document.execCommand("copy"); ok(); } catch(e){ prompt("Copia il link:", T); } document.body.removeChild(i); }
+    if (navigator.clipboard) navigator.clipboard.writeText(T).then(ok, vecchio); else vecchio();
   };
 })();
 </script></body></html>
