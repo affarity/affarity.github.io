@@ -38,6 +38,9 @@ h1 em{font-style:normal;background:linear-gradient(90deg,#ffb347,#ff8a1a);-webki
 @keyframes luce{60%,100%{left:130%}}
 .ig{background:linear-gradient(135deg,#feda75 0%,#fa7e1e 25%,#d62976 55%,#962fbf 80%,#4f5bd5 100%);color:#fff;
   box-shadow:0 10px 26px rgba(214,41,118,.32)}
+.social{display:flex;gap:10px}.social .btn{flex:1;font-size:1rem;padding:15px 10px}
+.tt{background:#111;color:#fff;border:1px solid rgba(255,255,255,.18);box-shadow:-3px 0 0 rgba(37,244,238,.55) inset,3px 0 0 rgba(254,44,85,.55) inset}
+.nota.su{border-color:rgba(255,179,71,.6);background:rgba(255,140,26,.12);color:#f5f5f7}
 .cp{background:rgba(255,255,255,.06);color:#f5f5f7;border:1px solid rgba(255,255,255,.14);font-size:.98rem;padding:14px 16px}
 .cp.ok{background:rgba(52,199,89,.15);border-color:rgba(52,199,89,.5);color:#8ef0a8}
 .etichetta{margin:22px 0 0;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:#77777f;font-weight:700}
@@ -52,18 +55,24 @@ h1 em{font-style:normal;background:linear-gradient(90deg,#ffb347,#ff8a1a);-webki
   <p class="sub">Prodotti utili su Amazon, con il prezzo controllato prima e dopo la pubblicazione.</p>
   <div class="punti"><span>✓ Venduti da Amazon</span><span>✓ Prezzi verificati</span><span>✓ Gratis</span></div>
 
-  <a class="btn tg" id="apri" data-ev="clic-telegram" href="https://t.me/affarity">
+  <a class="btn tg" id="apri" href="https://t.me/affarity">
     <svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M21.9 4.3 18.7 19.4c-.2 1.1-.9 1.3-1.8.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.4-5 9.1-8.2c.4-.4-.1-.6-.6-.2L6.2 13 1.4 11.5c-1-.3-1.1-1 .2-1.5L20.5 2.8c.9-.3 1.6.2 1.4 1.5z"/></svg>
     Entra nel canale Telegram
   </a>
   <button class="btn cp" id="copia" type="button">📋 Copia il link del canale</button>
-  <div class="nota" id="nota">Se Telegram non si apre: tocca <b>⋯</b> in alto e scegli <b>Apri nel browser</b>, oppure copia il link e incollalo su Telegram.</div>
+  <div class="nota" id="nota">Se Telegram non si apre: tocca <b>⋯</b> in alto a destra → <b>Apri nel browser</b>, oppure tocca <b>Copia il link</b> e incollalo su Telegram.</div>
 
   <p class="etichetta">Seguici anche su</p>
-  <a class="btn ig" id="ig" data-ev="clic-instagram" href="https://www.instagram.com/affarity/">
-    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="#fff" stroke="none"/></svg>
-    Instagram @affarity
-  </a>
+  <div class="social">
+    <a class="btn ig" data-ev="clic-instagram" href="https://www.instagram.com/affarity/">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="#fff" stroke="none"/></svg>
+      Instagram
+    </a>
+    <a class="btn tt" data-ev="clic-tiktok" href="https://www.tiktok.com/@affarity">
+      <svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M16.6 3c.4 2.2 1.9 3.8 4.1 4v3.1c-1.5 0-2.9-.4-4.1-1.2v6.4c0 3.3-2.6 5.7-5.8 5.7S5 18.6 5 15.4s2.6-5.7 5.8-5.7c.3 0 .6 0 .9.1v3.2c-.3-.1-.6-.2-.9-.2-1.4 0-2.6 1.2-2.6 2.6s1.2 2.6 2.6 2.6 2.6-1.2 2.6-2.6V3h3.2z"/></svg>
+      TikTok
+    </a>
+  </div>
   <div class="piede">Affarity · prodotti · idee · offerte</div>
 </main>
 <script>
@@ -75,35 +84,41 @@ h1 em{font-style:normal;background:linear-gradient(90deg,#ffb347,#ff8a1a);-webki
   var inApp = tiktok || insta || fb;
   var android = /Android/i.test(ua), ios = /iPhone|iPad|iPod/i.test(ua);
   var q = new URLSearchParams(location.search);
-  var fonte = q.get("da") || (tiktok ? "tiktok" : insta ? "instagram" : fb ? "facebook" : "web");
+  var da = (q.get("da") || "").toLowerCase();
+  var fonte = (da === "tiktok" || da === "instagram") ? da : tiktok ? "tiktok" : (insta || fb) ? "instagram" : "web";
 
-  // statistiche (GoatCounter, senza cookie): visite e clic per fonte
+  // contatori (Abacus, senza cookie): il bot li legge ogni sera e manda il riepilogo a Samuele
   function conta(ev){
-    try {
-      var u = "https://affarity.goatcounter.com/count?p=" + encodeURIComponent(ev + "-" + fonte) +
-              "&t=" + encodeURIComponent(ev) + "&e=true&rnd=" + Math.random().toString(36).slice(2);
-      if (!(navigator.sendBeacon && navigator.sendBeacon(u))) { new Image().src = u; }
-    } catch (e) {}
+    var u = "https://abacus.jasoncameron.dev/hit/affarity-bio/" + ev + "-" + fonte;
+    try { fetch(u, {mode: "no-cors", keepalive: true, cache: "no-store"}); }
+    catch (e) { try { new Image().src = u; } catch (e2) {} }
   }
-  conta("visita");
+  if (!sessionStorage || !sessionStorage.getItem("v")) { conta("visita"); try { sessionStorage.setItem("v", "1"); } catch (e) {} }
 
-  var apri = document.getElementById("apri");
-  var dest = T;
-  if (inApp && android) dest = "intent://resolve?domain=affarity#Intent;scheme=tg;package=org.telegram.messenger;S.browser_fallback_url=" + encodeURIComponent(T) + ";end";
-  else if (inApp && ios) dest = "x-safari-https://t.me/affarity"; // esce dall'app e apre Safari, che apre Telegram
-  apri.href = dest;
-  if (inApp) document.getElementById("nota").style.display = "block";
+  var nota = document.getElementById("nota");
+  if (inApp) nota.style.display = "block";
 
-  // apertura automatica di Telegram appena caricata (i pulsanti restano come riserva)
-  if (q.get("auto") !== "no") {
-    setTimeout(function(){ conta("apertura-auto"); setTimeout(function(){ try { location.href = dest; } catch (e) {} }, 300); }, 300);
+  function vaiTelegram(){
+    if (!inApp) { location.href = T; return; }
+    if (android) { location.href = "intent://resolve?domain=affarity#Intent;scheme=tg;package=org.telegram.messenger;S.browser_fallback_url=" + encodeURIComponent(T) + ";end"; return; }
+    // iPhone dentro TikTok/Instagram: esce dall'app e apre Safari, che apre Telegram
+    location.href = "x-safari-https://t.me/affarity";
+    setTimeout(function(){ if (!document.hidden) { nota.className = "nota su"; nota.scrollIntoView({behavior: "smooth", block: "center"}); } }, 1500);
   }
-
-  Array.prototype.forEach.call(document.querySelectorAll("[data-ev]"), function(a){
-    a.addEventListener("click", function(){ conta(a.getAttribute("data-ev")); });
+  document.getElementById("apri").addEventListener("click", function(e){
+    e.preventDefault(); conta("clic-telegram"); setTimeout(vaiTelegram, 150);
   });
+  Array.prototype.forEach.call(document.querySelectorAll("[data-ev]"), function(a){
+    a.addEventListener("click", function(e){
+      e.preventDefault(); conta(a.getAttribute("data-ev"));
+      var h = a.href; setTimeout(function(){ location.href = h; }, 200);
+    });
+  });
+  // apertura automatica di Telegram solo se richiesta con ?auto=si
+  if (q.get("auto") === "si") setTimeout(vaiTelegram, 400);
+
   document.getElementById("copia").onclick = function(){
-    var b = this; conta("copia-link");
+    var b = this; conta("copia");
     function ok(){ b.textContent = "✅ Link copiato: apri Telegram e incollalo"; b.className = "btn cp ok"; }
     function vecchio(){ var i = document.createElement("textarea"); i.value = T; i.setAttribute("readonly", "");
       i.style.position = "fixed"; i.style.opacity = "0"; document.body.appendChild(i); i.select();
@@ -111,5 +126,5 @@ h1 em{font-style:normal;background:linear-gradient(90deg,#ffb347,#ff8a1a);-webki
     if (navigator.clipboard) navigator.clipboard.writeText(T).then(ok, vecchio); else vecchio();
   };
 })();
-</script><!-- v5 -->
+</script><!-- v6 -->
 </body></html>
