@@ -1,0 +1,43 @@
+<!DOCTYPE html><html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Affarity · Entra nel canale Telegram</title>
+<style>
+body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:#fff7ec;color:#1d1d1d;line-height:1.5}
+main{max-width:480px;margin:0 auto;padding:36px 22px 50px;text-align:center}
+h1{font-size:1.7rem;margin:.2rem 0 .4rem}.tag{color:#e8730c;font-weight:800;letter-spacing:.05em;text-transform:uppercase;font-size:.85rem}
+.btn{display:block;background:#f28c1b;color:#111;padding:16px;border-radius:14px;font-weight:800;font-size:1.15rem;text-decoration:none;margin:18px 0 10px;border:0;width:100%}
+.btn2{display:block;background:#fff;color:#111;padding:13px;border-radius:14px;font-weight:700;border:2px solid #f2c48a;width:100%;font-size:1rem;margin:8px 0}
+.box{background:#fff;border:1px solid #f0d9bd;border-radius:14px;padding:14px 16px;margin-top:22px;text-align:left}
+.box b{color:#c85f00}.piccolo{font-size:.85rem;color:#666;margin-top:22px}
+#app{display:none}
+</style></head><body><main>
+<div class="tag">Affarity</div>
+<h1>Le offerte che scelgo sono nel canale Telegram</h1>
+<p>Prodotti utili su Amazon, prezzo controllato prima e dopo la pubblicazione. Gratis.</p>
+<a class="btn" id="apri" href="https://t.me/affarity">📲 Apri il canale Telegram</a>
+<button class="btn2" id="copia" type="button">📋 Copia il link del canale</button>
+<div class="box" id="app"><b>Sei dentro TikTok o Instagram?</b><br>
+Se il pulsante non apre Telegram, tocca <b>⋯</b> in alto a destra e scegli <b>Apri nel browser</b>, poi tocca di nuovo il pulsante.<br>
+Oppure copia il link, apri Telegram e cerca <b>@affarity</b>.</div>
+<p class="piccolo">Canale: t.me/affarity · @affarity</p>
+</main>
+<script>
+(function(){
+  var ua = navigator.userAgent || "";
+  var inApp = /musical_ly|Bytedance|TikTok|Instagram|FBAN|FBAV|BytedanceWebview/i.test(ua);
+  var android = /Android/i.test(ua);
+  var apri = document.getElementById("apri");
+  if (inApp) {
+    document.getElementById("app").style.display = "block";
+    // dentro le app: apre direttamente l'app Telegram (su Android con ritorno al web se non c'e')
+    apri.href = android
+      ? "intent://resolve?domain=affarity#Intent;scheme=tg;package=org.telegram.messenger;S.browser_fallback_url=https%3A%2F%2Ft.me%2Faffarity;end"
+      : "tg://resolve?domain=affarity";
+  }
+  document.getElementById("copia").onclick = function(){
+    var t = "https://t.me/affarity", b = this;
+    function ok(){ b.textContent = "✅ Link copiato: apri Telegram e incollalo"; }
+    if (navigator.clipboard) { navigator.clipboard.writeText(t).then(ok, function(){ prompt("Copia il link:", t); }); }
+    else { prompt("Copia il link:", t); }
+  };
+})();
+</script></body></html>
