@@ -1,14 +1,131 @@
-<!DOCTYPE html><html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<!DOCTYPE html><html lang="it"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b0b0d">
 <title>Affarity · collegamento TikTok</title>
-<style>body{margin:0;font-family:system-ui,sans-serif;background:#fff7ec;color:#1d1d1d}main{max-width:640px;margin:0 auto;padding:40px 22px}
-textarea{width:100%;height:110px;font-size:14px;border-radius:10px;border:1px solid #e0c7a6;padding:10px}
-button{background:#f28c1b;border:0;border-radius:10px;padding:12px 18px;font-weight:700;font-size:16px;margin-top:10px;cursor:pointer}</style></head>
-<body><main><h1>Collegamento TikTok</h1><div id="out">Nessun codice ricevuto.</div></main>
+<meta name="description" content="Collegamento TikTok di Affarity.">
+<meta property="og:title" content="Affarity · collegamento TikTok"><meta property="og:description" content="Collegamento TikTok di Affarity.">
+<meta property="og:image" content="https://affarity.github.io/logo.jpg">
+<link rel="icon" href="/favicon.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+html,body{margin:0;padding:0;background:#0b0b0d}
+body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:#f5f5f7;line-height:1.6;overflow-x:hidden;position:relative}
+body::before{content:"";position:fixed;inset:-20%;z-index:-1;pointer-events:none;
+  background:radial-gradient(40% 30% at 50% 8%,rgba(255,140,26,.30),transparent 70%),
+             radial-gradient(35% 30% at 90% 60%,rgba(214,41,118,.10),transparent 70%),
+             radial-gradient(35% 30% at 8% 75%,rgba(55,174,226,.12),transparent 70%)}
+a{color:#ffb347}
+.wrap{max-width:980px;margin:0 auto;padding:0 20px}
+nav{position:sticky;top:0;z-index:5;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  background:rgba(11,11,13,.72);border-bottom:1px solid rgba(255,255,255,.06)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:62px}
+.marchio{display:flex;align-items:center;gap:10px;color:#fff;text-decoration:none;font-weight:800;font-size:1.1rem}
+.marchio img{width:36px;height:36px;border-radius:50%;box-shadow:0 0 14px rgba(255,140,26,.6)}
+.marchio b{background:linear-gradient(90deg,#ffb347,#ff8a1a);-webkit-background-clip:text;background-clip:text;color:transparent}
+.menu{display:flex;gap:6px}
+.menu a{color:#cfcfd6;text-decoration:none;font-weight:600;font-size:.9rem;padding:8px 12px;border-radius:999px;transition:background .2s,color .2s}
+.menu a:hover,.menu a.su{background:rgba(255,140,26,.14);color:#ffcf99}
+@media(max-width:560px){.menu a.nasc{display:none}}
+.eroe{text-align:center;padding:56px 20px 34px}
+.logo{width:170px;height:170px;margin:0 auto 22px;border-radius:50%;overflow:hidden;
+  box-shadow:0 0 0 3px rgba(255,150,40,.35),0 0 50px rgba(255,140,26,.55),0 14px 40px rgba(0,0,0,.6);animation:respira 3.2s ease-in-out infinite}
+.logo img{width:100%;height:100%;display:block}
+@keyframes respira{50%{box-shadow:0 0 0 3px rgba(255,150,40,.6),0 0 80px rgba(255,140,26,.8),0 14px 40px rgba(0,0,0,.6)}}
+h1{font-size:clamp(1.9rem,6vw,3.1rem);line-height:1.12;margin:0 0 14px;letter-spacing:-.02em;font-weight:850}
+h1 em,h2 em{font-style:normal;background:linear-gradient(90deg,#ffb347,#ff8a1a);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{margin:0 auto 22px;color:#b9b9c0;font-size:1.08rem;max-width:560px}
+.punti{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:0 0 28px}
+.punti span{font-size:.82rem;font-weight:600;color:#ffcf99;background:rgba(255,140,26,.10);border:1px solid rgba(255,140,26,.28);padding:6px 12px;border-radius:999px}
+.pulsanti{max-width:440px;margin:0 auto}
+.btn{position:relative;display:flex;align-items:center;justify-content:center;gap:11px;width:100%;padding:17px 16px;border-radius:18px;border:0;
+  font:inherit;font-weight:800;font-size:1.06rem;text-decoration:none;cursor:pointer;color:#fff;-webkit-tap-highlight-color:transparent;
+  transition:transform .12s,box-shadow .25s,filter .25s;margin-top:12px;overflow:hidden}
+.btn:hover{transform:translateY(-2px);filter:brightness(1.08)}
+.btn:active{transform:scale(.97)}
+.btn svg{width:24px;height:24px;flex:none}
+.btn::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.30),transparent);animation:luce 3.2s ease-in-out infinite}
+@keyframes luce{60%,100%{left:130%}}
+.tg{background:linear-gradient(135deg,#3fb6ea,#1d8fd0);font-size:1.16rem;padding:19px 16px;box-shadow:0 10px 30px rgba(29,143,208,.45)}
+.tg:hover{box-shadow:0 14px 40px rgba(29,143,208,.65)}
+.ig{background:linear-gradient(135deg,#feda75 0%,#fa7e1e 25%,#d62976 55%,#962fbf 80%,#4f5bd5 100%);box-shadow:0 10px 26px rgba(214,41,118,.32)}
+.ig:hover{box-shadow:0 14px 36px rgba(214,41,118,.55)}
+.tt{background:#111;border:1px solid rgba(255,255,255,.18);box-shadow:-3px 0 0 rgba(37,244,238,.6) inset,3px 0 0 rgba(254,44,85,.6) inset,0 10px 26px rgba(0,0,0,.4)}
+.tt:hover{box-shadow:-3px 0 0 rgba(37,244,238,.9) inset,3px 0 0 rgba(254,44,85,.9) inset,0 14px 36px rgba(37,244,238,.18)}
+.ar{background:linear-gradient(135deg,#ffb347,#ff7a1a);color:#1a0f00;box-shadow:0 10px 28px rgba(255,122,26,.45)}
+.social{display:flex;gap:10px}.social .btn{flex:1;font-size:1rem;padding:15px 10px}
+section{padding:46px 20px}
+h2{font-size:clamp(1.5rem,4.2vw,2.1rem);line-height:1.2;margin:0 0 8px;letter-spacing:-.01em;text-align:center}
+.intro{color:#a9a9b1;text-align:center;max-width:600px;margin:0 auto 28px}
+.griglia{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.carta{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.08);
+  border-radius:22px;padding:22px 20px;transition:transform .2s,border-color .2s,box-shadow .2s}
+.carta:hover{transform:translateY(-4px);border-color:rgba(255,140,26,.45);box-shadow:0 14px 40px rgba(255,140,26,.12)}
+.carta .ic{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:12px;
+  background:rgba(255,140,26,.12);border:1px solid rgba(255,140,26,.3);box-shadow:0 0 20px rgba(255,140,26,.18)}
+.carta h3{margin:0 0 6px;font-size:1.08rem}
+.carta p{margin:0;color:#b4b4bc;font-size:.95rem}
+.num{font-size:.75rem;font-weight:800;letter-spacing:.14em;color:#ff9a3c;text-transform:uppercase}
+.esempio{max-width:520px;margin:0 auto;background:#17181c;border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:18px 20px;
+  font-size:.95rem;color:#e6e6ea;box-shadow:0 20px 50px rgba(0,0,0,.45)}
+.esempio .t{font-weight:800}.esempio .p{color:#8ef0a8;font-weight:700}.esempio .g{color:#8a8a93;font-size:.85rem}
+.esempio .l{display:inline-block;margin-top:8px;color:#5ec4f0;font-weight:700}
+.cta{text-align:center;border-radius:28px;padding:38px 22px;margin:10px 0 0;
+  background:radial-gradient(80% 120% at 50% 0%,rgba(255,140,26,.22),rgba(255,140,26,.04) 60%),#121216;border:1px solid rgba(255,140,26,.25)}
+.testo{max-width:760px;margin:0 auto;padding:40px 20px 10px}
+.testo h1{font-size:clamp(1.8rem,5vw,2.4rem);text-align:left}
+.testo .data{color:#8a8a93;margin:0 0 18px}
+.testo .carta{margin:14px 0}
+.testo .carta h2{text-align:left;font-size:1.15rem;margin:0 0 6px}
+.testo .carta p{color:#c4c4cc;font-size:.98rem}
+.en{border-color:rgba(55,174,226,.3)}
+footer{margin-top:40px;border-top:1px solid rgba(255,255,255,.07);padding:26px 0 40px;color:#80808a;font-size:.86rem;text-align:center}
+footer a{color:#c9c9d0;text-decoration:none;margin:0 6px}footer a:hover{color:#ffb347}
+footer .aff{margin-top:10px;font-size:.8rem;color:#6c6c75}
+.appari{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+.appari.vis{opacity:1;transform:none}
+textarea{width:100%;height:110px;font:inherit;font-size:.95rem;border-radius:14px;border:1px solid rgba(255,255,255,.15);background:#141418;color:#f5f5f7;padding:12px}
+</style></head>
+<body data-conta="no">
+<nav><div class="wrap"><a class="marchio" href="/"><img src="/logo.jpg" alt=""><span>Aff<b>arity</b></span></a>
+<div class="menu"><a class="nasc" href="/">Home</a><a class="nasc" href="/#come">Come funziona</a><a class="" href="/telegram/">Canale</a></div></div></nav>
+<main class="testo wrap"><h1>Collegamento <em>TikTok</em></h1><div class="carta" id="out"><p>Nessun codice ricevuto.</p></div></main>
 <script>
 const p=new URLSearchParams(location.search), code=p.get('code'), err=p.get('error');
 const o=document.getElementById('out');
-if(code){o.innerHTML='<p>Autorizzazione ricevuta. Copia il messaggio qui sotto e incollalo <b>subito</b> nella chat privata con il bot Affarity (il codice scade in pochi minuti):</p><textarea id="t" readonly></textarea><br><button id="b">Copia</button>';
+if(code){o.innerHTML='<p>Autorizzazione ricevuta. Copia il messaggio qui sotto e incollalo <b>subito</b> nella chat privata con il bot Affarity (il codice scade in pochi minuti):</p><textarea id="t" readonly></textarea><button class="btn ar" id="b" type="button">📋 Copia</button>';
  const t=document.getElementById('t'); t.value='/tiktok '+code;
- document.getElementById('b').onclick=()=>{t.select();navigator.clipboard&&navigator.clipboard.writeText(t.value);document.getElementById('b').textContent='Copiato ✔';};}
+ document.getElementById('b').onclick=()=>{t.select();navigator.clipboard&&navigator.clipboard.writeText(t.value);document.getElementById('b').textContent='✅ Copiato';};}
 else if(err){o.textContent='TikTok ha risposto con un errore: '+err+' '+(p.get('error_description')||'');}
-</script></body></html>
+</script>
+<footer><div class="wrap">
+<div>Affarity · <a href="mailto:info.affarity@gmail.com">info.affarity@gmail.com</a></div>
+<div style="margin-top:8px"><a href="/">Home</a>·<a href="/termini.html">Termini di servizio</a>·<a href="/privacy.html">Privacy</a>·<a href="/telegram/">Canale Telegram</a></div>
+<div class="aff">In qualità di Affiliato Amazon, Affarity riceve un guadagno dagli acquisti idonei.</div>
+</div></footer>
+<script>
+(function(){
+  // contatori anonimi senza cookie (Abacus): il bot li legge ogni sera
+  function conta(ev){ var u = "https://abacus.jasoncameron.dev/hit/affarity-bio/" + ev + "-sito";
+    try { fetch(u, {mode: "no-cors", keepalive: true, cache: "no-store"}); } catch (e) { try { new Image().src = u; } catch (e2) {} } }
+  if (document.body.dataset.conta === "si") {
+    try { if (!sessionStorage.getItem("v")) { conta("visita"); sessionStorage.setItem("v", "1"); } } catch (e) { conta("visita"); }
+  }
+  var ua = navigator.userAgent || "", inApp = /musical_ly|Bytedance|TikTok|trill|Instagram|FBAN|FBAV|FB_IAB/i.test(ua);
+  function dest(h){  // dentro TikTok/Instagram t.me non si apre: iPhone -> Safari, Android -> app Telegram
+    if (!inApp || h.indexOf("t.me/") < 0) return h;
+    if (/Android/i.test(ua)) return "intent://resolve?domain=affarity#Intent;scheme=tg;package=org.telegram.messenger;S.browser_fallback_url=" + encodeURIComponent(h) + ";end";
+    if (/iPhone|iPad|iPod/i.test(ua)) return "x-safari-" + h;
+    return h;
+  }
+  Array.prototype.forEach.call(document.querySelectorAll("[data-ev]"), function(a){
+    a.addEventListener("click", function(e){ e.preventDefault(); conta(a.getAttribute("data-ev"));
+      var h = dest(a.href); setTimeout(function(){ location.href = h; }, 180); });
+  });
+  var io = "IntersectionObserver" in window ? new IntersectionObserver(function(v){
+    v.forEach(function(x){ if (x.isIntersecting) { x.target.classList.add("vis"); io.unobserve(x.target); } }); }, {threshold: .12}) : null;
+  Array.prototype.forEach.call(document.querySelectorAll(".appari"), function(el){ io ? io.observe(el) : el.classList.add("vis"); });
+})();
+</script>
+</body></html>
