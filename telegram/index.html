@@ -1,46 +1,82 @@
-<!DOCTYPE html><html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<!DOCTYPE html><html lang="it"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f28c1b">
 <title>Affarity · Entra nel canale Telegram</title>
 <style>
-body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:#fff7ec;color:#1d1d1d;line-height:1.5}
-main{max-width:480px;margin:0 auto;padding:36px 22px 50px;text-align:center}
-h1{font-size:1.7rem;margin:.2rem 0 .4rem}.tag{color:#e8730c;font-weight:800;letter-spacing:.05em;text-transform:uppercase;font-size:.85rem}
-.btn{display:block;background:#f28c1b;color:#111;padding:16px;border-radius:14px;font-weight:800;font-size:1.15rem;text-decoration:none;margin:18px 0 10px;border:0;width:100%}
-.btn2{display:block;background:#fff;color:#111;padding:13px;border-radius:14px;font-weight:700;border:2px solid #f2c48a;width:100%;font-size:1rem;margin:8px 0}
-.box{background:#fff;border:1px solid #f0d9bd;border-radius:14px;padding:14px 16px;margin-top:22px;text-align:left}
-.box b{color:#c85f00}.piccolo{font-size:.85rem;color:#666;margin-top:22px}
-#app{display:none}
-</style></head><body><main>
-<div class="tag">Affarity</div>
-<h1>Le offerte che scelgo sono nel canale Telegram</h1>
-<p>Prodotti utili su Amazon, prezzo controllato prima e dopo la pubblicazione. Gratis.</p>
-<a class="btn" id="apri" href="https://t.me/affarity">📲 Apri il canale Telegram</a>
-<button class="btn2" id="copia" type="button">📋 Copia il link del canale</button>
-<div class="box" id="app"><b>Sei dentro TikTok o Instagram?</b><br>
-Se il pulsante non apre Telegram, tocca <b>⋯</b> in alto a destra e scegli <b>Apri nel browser</b>, poi tocca di nuovo il pulsante.<br>
-Oppure copia il link, apri Telegram e cerca <b>@affarity</b>.</div>
-<p class="piccolo">Canale: t.me/affarity · @affarity</p><!-- v3 -->
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{min-height:100vh;min-height:100dvh;display:flex;align-items:center;justify-content:center;
+  font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:#1d1d1f;line-height:1.45;
+  background:radial-gradient(120% 80% at 50% 0%,#ffd9a8 0%,#fff3e3 45%,#fffaf4 100%);
+  padding:24px 18px calc(24px + env(safe-area-inset-bottom))}
+.card{width:100%;max-width:400px;background:#fff;border-radius:28px;padding:30px 22px 24px;text-align:center;
+  box-shadow:0 18px 50px rgba(200,95,0,.16),0 2px 8px rgba(0,0,0,.05)}
+.logo{width:76px;height:76px;margin:0 auto 14px;border-radius:24px;display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,#ffb347,#f27a1b);color:#fff;font-weight:900;font-size:40px;
+  box-shadow:0 8px 20px rgba(242,122,27,.35)}
+.tag{color:#e8730c;font-weight:800;letter-spacing:.14em;text-transform:uppercase;font-size:.78rem}
+h1{font-size:1.5rem;line-height:1.2;margin:8px 0 10px;letter-spacing:-.01em}
+.sub{margin:0 auto 18px;color:#555;font-size:1rem;max-width:320px}
+ul{list-style:none;padding:0;margin:0 auto 22px;text-align:left;display:inline-block}
+li{margin:6px 0;font-size:.97rem;color:#333}
+li span{display:inline-flex;width:22px;height:22px;border-radius:50%;background:#fff1e0;color:#e8730c;
+  align-items:center;justify-content:center;font-size:.8rem;font-weight:900;margin-right:8px}
+.btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:17px 16px;border-radius:16px;
+  border:0;font:inherit;font-weight:800;font-size:1.1rem;text-decoration:none;cursor:pointer;
+  -webkit-tap-highlight-color:transparent;transition:transform .08s}
+.btn:active{transform:scale(.98)}
+.tg{background:linear-gradient(135deg,#37aee2,#1e96c8);color:#fff;box-shadow:0 8px 22px rgba(30,150,200,.35)}
+.tg svg{width:24px;height:24px;flex:none}
+.cp{margin-top:12px;background:#fff7ee;color:#1d1d1f;border:2px solid #f6d3a8;font-size:1rem;padding:14px 16px}
+.cp.ok{background:#eafaf0;border-color:#9fe0b8;color:#13703d}
+.nota{display:none;margin-top:16px;font-size:.86rem;color:#6b6b6b;background:#fafafa;border-radius:14px;padding:12px 14px}
+.nota b{color:#c85f00}
+.piede{margin-top:18px;font-size:.82rem;color:#999}
+</style></head><body>
+<main class="card">
+  <div class="logo">A</div>
+  <div class="tag">Affarity</div>
+  <h1>Le offerte che scelgo sono nel canale Telegram</h1>
+  <p class="sub">Prodotti utili su Amazon, prezzo controllato prima e dopo la pubblicazione.</p>
+  <ul>
+    <li><span>✓</span>Solo prodotti venduti da Amazon</li>
+    <li><span>✓</span>Prezzo aggiornato con data e ora</li>
+    <li><span>✓</span>Gratis, esci quando vuoi</li>
+  </ul>
+  <a class="btn tg" id="apri" href="https://t.me/affarity">
+    <svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M21.9 4.3 18.7 19.4c-.2 1.1-.9 1.3-1.8.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.4-5 9.1-8.2c.4-.4-.1-.6-.6-.2L6.2 13 1.4 11.5c-1-.3-1.1-1 .2-1.5L20.5 2.8c.9-.3 1.6.2 1.4 1.5z"/></svg>
+    Entra nel canale
+  </a>
+  <button class="btn cp" id="copia" type="button">📋 Copia il link del canale</button>
+  <div class="nota" id="nota">Se Telegram non si apre: tocca <b>⋯</b> in alto e scegli <b>Apri nel browser</b>, oppure copia il link e cercalo su Telegram.</div>
+  <div class="piede">t.me/affarity · @affarity</div>
 </main>
 <script>
 (function(){
   var T = "https://t.me/affarity";
   var ua = navigator.userAgent || "";
-  var inApp = /musical_ly|Bytedance|TikTok|Instagram|FBAN|FBAV|FB_IAB|BytedanceWebview/i.test(ua);
+  var inApp = /musical_ly|Bytedance|TikTok|Instagram|FBAN|FBAV|FB_IAB|BytedanceWebview|trill/i.test(ua);
   var android = /Android/i.test(ua), ios = /iPhone|iPad|iPod/i.test(ua);
   var apri = document.getElementById("apri");
   var dest = T;
   if (inApp && android) dest = "intent://resolve?domain=affarity#Intent;scheme=tg;package=org.telegram.messenger;S.browser_fallback_url=" + encodeURIComponent(T) + ";end";
-  else if (inApp && ios) dest = "x-safari-https://t.me/affarity";   // esce da TikTok/Instagram e apre Safari -> Telegram
+  else if (inApp && ios) dest = "x-safari-https://t.me/affarity"; // esce da TikTok/Instagram e apre Safari, che apre Telegram
   apri.href = dest;
-  if (inApp) document.getElementById("app").style.display = "block";
-  // apertura immediata, senza toccare niente; i pulsanti restano come riserva
-  try { window.location.replace(dest); } catch (e) {}
-  if (inApp && ios) setTimeout(function(){ try { window.location.href = "tg://resolve?domain=affarity"; } catch (e) {} }, 1200);
+  if (inApp) {
+    document.getElementById("nota").style.display = "block";
+    // apertura automatica appena caricata la pagina (il pulsante resta come riserva)
+    setTimeout(function(){ try { window.location.href = dest; } catch (e) {} }, 250);
+  } else {
+    try { window.location.replace(T); } catch (e) {}
+  }
   document.getElementById("copia").onclick = function(){
     var b = this;
-    function ok(){ b.textContent = "✅ Link copiato: apri Telegram e incollalo"; }
-    function vecchio(){ var i=document.createElement("textarea"); i.value=T; document.body.appendChild(i); i.select();
-      try { document.execCommand("copy"); ok(); } catch(e){ prompt("Copia il link:", T); } document.body.removeChild(i); }
+    function ok(){ b.textContent = "✅ Link copiato: apri Telegram e incollalo"; b.className = "btn cp ok"; }
+    function vecchio(){ var i = document.createElement("textarea"); i.value = T; i.setAttribute("readonly", "");
+      i.style.position = "fixed"; i.style.opacity = "0"; document.body.appendChild(i); i.select();
+      try { document.execCommand("copy"); ok(); } catch (e) { prompt("Copia il link:", T); } document.body.removeChild(i); }
     if (navigator.clipboard) navigator.clipboard.writeText(T).then(ok, vecchio); else vecchio();
   };
 })();
-</script></body></html>
+</script><!-- v4 -->
+</body></html>
